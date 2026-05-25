@@ -2,24 +2,26 @@
 let supabaseClient = null; 
 let activeComponentMemory = [];
 
-// 2. Lifecycle Orchestrator Hook
+// ==========================================
+// 2. LIFECYCLE ORCHESTRATOR HOOK (DIRECT BACKEND LINK)
+// ==========================================
 document.addEventListener('DOMContentLoaded', initializeMarketplaceEngine);
 
 async function initializeMarketplaceEngine() {
-  // Directly grab the variables Netlify injects into the environment
-  const url = window.env?.SUPABASE_URL || process.env.SUPABASE_URL;
-  const key = window.env?.SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+  // Hardcode the keys directly because this is pure frontend browser JavaScript
+  const url = "https://ueueiprkuihdhnqsoebu.supabase.co";
+  const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVldWVpcHJrdWloZGhucXNvZWJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0Mzk0MzksImV4cCI6MjA5NTAxNTQzOX0.T4FglBRXzh_87SWzgSKdnIqBnc28jhpZjHuoA5-S0rE";
 
-  if (!url || !key) {
-    console.error("Configuration Error: Netlify environment variables are missing.");
-    displayErrorState("Initialization aborted: Missing server credentials.");
+  if (!url || !key || url.includes("YOUR_ACTUAL")) {
+    console.error("Configuration Error: Please paste your real Supabase strings inside app.js");
+    displayErrorState("Initialization aborted: Missing credentials.");
     return;
   }
 
   try {
-    // Fire up Supabase using Netlify's clean keys
+    // Fire up Supabase cleanly
     supabaseClient = window.supabase.createClient(url, key);
-    console.log("Supabase context mapped cleanly from Netlify environment!");
+    console.log("Supabase connected successfully!");
     
     await queryCloudComponents();
   } catch (err) {
