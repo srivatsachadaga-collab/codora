@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<html lang="en" class="h-full bg-[#03030d] text-zinc-100 selection:bg-indigo-500/30">
+<head>
+  <title>Codora Marketplace - Free Reusable UI Components</title>
+  <meta name="description" content="Search, live-preview, and copy clean, reusable Tailwind CSS and UI code components. 100% free web design library for developers." />
+  <meta name="keywords" content="tailwind css components, free ui library, reusable code snippets, web design components, copy paste html" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-netlify-site.netlify.app/" />
+  <meta property="og:title" content="Codora Marketplace - Free Reusable UI Components" />
+  <meta property="og:description" content="Search, live-preview, and copy clean, reusable Tailwind CSS and UI code components. 100% free." />
+  <meta property="og:image" content="https://your-netlify-site.netlify.app/screenshot.png" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://your-netlify-site.netlify.app/" />
+  <meta property="twitter:title" content="Codora Marketplace - Free Reusable UI Components" />
+  <meta property="twitter:description" content="Search, live-preview, and copy clean, reusable Tailwind CSS and UI code components." />
+  <meta property="twitter:image" content="https://your-netlify-site.netlify.app/screenshot.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codora Marketplace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="flex min-h-full flex-col antialiased bg-[#03030d]">
+
+  <header class="border-b border-white/5 bg-[#03030d]/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 shadow-lg shadow-indigo-600/30">
+          <svg style="width: 20px; height: 20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-white">Codora <span class="text-indigo-400 font-medium">Marketplace</span></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative overflow-hidden pt-20 pb-12 text-center">
+    <div class="absolute top-0 left-1/2 -z-10 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-indigo-600/10 opacity-50 blur-[120px]"></div>
+    <h1 class="text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+      Codora <span class="bg-gradient-to-r from-blue-500 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Marketplace</span>
+    </h1>
+    <p class="mx-auto mt-4 max-w-xl text-base text-zinc-400 font-medium">
+      Search, preview and copy reusable code components. <span class="text-indigo-400">100% free.</span>
+    </p>
+
+    <div class="mt-8 flex items-center justify-center gap-3">
+      <span class="inline-flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-xs font-semibold text-indigo-400 shadow-inner">
+        Tailwind CSS
+      </span>
+    </div>
+
+    <div class="mx-auto mt-8 max-w-2xl px-4">
+      <div class="relative flex items-center rounded-2xl bg-[#090915] p-2 ring-1 ring-white/10 focus-within:ring-indigo-500/50 transition duration-200">
+        <div class="pointer-events-none pl-3 flex items-center">
+          <svg style="width: 20px; height: 20px;" class="text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input type="text" id="search-input" placeholder="Search components (e.g. navbar, card, hero, footer...)" 
+          class="w-full bg-transparent pl-3 pr-4 py-2.5 text-sm text-white placeholder-zinc-500 outline-none">
+        <button onclick="executeSearchQuery()" class="rounded-xl bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 transition shadow-md shadow-indigo-600/10">
+          Search
+        </button>
+      </div>
+            <div class="mt-4 flex justify-center">
+        <button type="button" onclick="toggleAddCardModal(true)" class="rounded-xl bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 transition shadow-md shadow-indigo-600/10">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+        Add new component
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-1 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 w-full">
+    <div class="flex items-center gap-2 mb-8">
+      <h2 class="text-xl font-bold text-white tracking-tight">Suggestions</h2>
+    </div>
+
+    <div id="component-grid" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      </div>
+  </main>
+
+  <footer class="mt-auto border-t border-white/5 bg-[#020208] py-8 text-center text-xs font-medium text-zinc-500">
+    Made with <span class="text-pink-500">❤️</span> by <span class="text-zinc-300 font-semibold">developers</span>, for developers.
+  </footer>
+  <div id="image-lightbox" onclick="closeLightboxModal()" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md cursor-zoom-out transition-opacity duration-200">
+  <div class="relative max-w-5xl max-h-[90vh] overflow-hidden rounded-xl border border-white/10 shadow-2xl" onclick="event.stopPropagation()">
+    <img id="lightbox-target-image" src="" alt="Enlarged View" class="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-xl" />
+    
+    <button onclick="closeLightboxModal()" class="absolute top-3 right-3 p-2 rounded-xl bg-black/60 text-zinc-400 hover:text-white transition border border-white/5 hover:bg-black/80">
+      <svg style="width: 18px; height: 18px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  </div>
+
+  <div id="add-card-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="relative w-full max-w-lg rounded-2xl border border-white/10 bg-[#070715] p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
+        <h2 class="text-base font-bold text-white tracking-tight">Add New Component</h2>
+        <button onclick="toggleAddCardModal(false)" class="text-zinc-400 hover:text-white transition p-1 rounded-lg hover:bg-white/5">
+          <svg style="width: 18px; height: 18px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form id="marketplace-submission-form" name="component-submissions" method="POST" data-netlify="true" class="space-y-4">
+        <input type="hidden" name="form-name" value="component-submissions" />
+
+        <div>
+          <label class="block text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1">Component Title</label>
+          <input type="text" name="title" required placeholder="e.g., Glassmorphism Button" class="w-full rounded-lg border border-[#121225] bg-[#0d0d25]/60 px-3 py-2 text-xs text-white placeholder-zinc-600 focus:border-purple-500 focus:outline-none" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1">Framework</label>
+            <select name="framework" class="w-full rounded-lg border border-[#121225] bg-[#0d0d25]/60 px-3 py-2 text-xs text-white focus:border-purple-500 focus:outline-none">
+              <option value="Tailwind">Tailwind CSS</option>
+              <option value="React">React</option>
+              <option value="Vue">Vue</option>
+              <option value="CSS">Vanilla CSS</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1">Category</label>
+            <select name="category" class="w-full rounded-lg border border-[#121225] bg-[#0d0d25]/60 px-3 py-2 text-xs text-white focus:border-purple-500 focus:outline-none">
+              <option value="Cards">Cards</option>
+              <option value="Buttons">Buttons</option>
+              <option value="Navigation">Navigation</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1">Source Code Markup</label>
+          <textarea name="code" required rows="5" placeholder="<div class='bg-white'>...</div>" class="w-full rounded-lg border border-[#121225] bg-[#0d0d25]/60 px-3 py-2 text-xs text-white font-mono placeholder-zinc-600 focus:border-purple-500 focus:outline-none resize-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="toggleAddCardModal(false)" class="px-4 py-2 rounded-xl text-xs font-semibold text-zinc-400 hover:text-white transition">Cancel</button>
+          <button type="submit" class="rounded-xl bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 transition shadow-md shadow-indigo-600/10">Submit To Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="env.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
