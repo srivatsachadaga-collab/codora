@@ -230,7 +230,7 @@ if (formElement) {
         body: new URLSearchParams(formData).toString(),
       });
       
-      alert("Submission received successfully! It will show up on your Netlify dashboard instantly. 🚀");
+      alert("Submission received successfully! Thank You");
       window.toggleAddCardModal(false);
     } catch (error) {
       console.error("Netlify Submission Error:", error);
